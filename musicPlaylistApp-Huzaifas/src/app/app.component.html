@@ -1,0 +1,53 @@
+<mat-toolbar color="primary">
+  <span>Music Playlist</span>
+  <span class="spacer"></span>
+  <span>Avg Rating: {{ averageRating | number: '1.1-1' }}</span>
+</mat-toolbar>
+
+<div class="filter-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Artist</mat-label>
+    <mat-select [(ngModel)]="selectedArtist">
+      <mat-option *ngFor="let artist of artists" [value]="artist">
+        {{ artist }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Album</mat-label>
+    <mat-select [(ngModel)]="selectedAlbum">
+      <mat-option *ngFor="let album of albums" [value]="album">
+        {{ album }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="grid-container">
+  <div class="card" *ngFor="let song of filteredSongs" [class.top-rated]="song.rating === 5">
+    <mat-card>
+      <img mat-card-image [src]="song.image" alt="{{ song.name }}" />
+      <mat-card-header>
+        <mat-card-title>{{ song.name }}</mat-card-title>
+        <mat-card-subtitle>{{ song.artist }} – {{ song.album }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p><strong>Duration:</strong> {{ song.duration }}</p>
+        <p>
+          <strong>Rating:</strong>
+          <ng-container *ngFor="let star of [1,2,3,4,5]">
+            <mat-icon>{{ star <= song.rating ? 'star' : 'star_border' }}</mat-icon>
+          </ng-container>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-icon-button color="accent">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

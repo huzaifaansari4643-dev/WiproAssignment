@@ -1,0 +1,32 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.filter-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+mat-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-rated {
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+}
+.card{
+    color: white;
+}
